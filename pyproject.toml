@@ -40,7 +40,7 @@ build-backend = "poetry.core.masonry.api"
 version_scheme = "no-guess-dev"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 sqlalchemy = { extras = ["asyncio"], version = ">=1.4" }
 strawberry-graphql = ">=0.236.0"
 sentinel = ">=0.3,<1.1"
@@ -86,14 +86,14 @@ include = ["src/strawberry_sqlalchemy_mapper"]
 exclude = ["**/__pycache__"]
 reportMissingImports = true
 reportMissingTypeStubs = false
-pythonVersion = "3.8"
+pythonVersion = "3.10"
 stubPath = ""
 
 [tool.ruff]
 line-length = 100
 indent-width = 4
 lint.select = ["ALL"]
-target-version = "py38"
+target-version = "py310"
 lint.ignore = [
   # https://github.com/astral-sh/ruff/pull/4427
   # equivalent to keep-runtime-typing
@@ -251,7 +251,6 @@ src = ["src/strawberry_sqlalchemy_mapper", "tests"]
 [tool.ruff.lint.per-file-ignores]
 "docs/conf.py" = ["ERA001", "PTH118", "PTH120"]
 "src/strawberry_sqlalchemy_mapper/field.py" = ["TCH001", "TCH002", "TCH003"]
-"src/strawberry_sqlalchemy_mapper/__init__.py" = ["UP036"]
 "tests/*" = [
   "RSE102",
   "SLF001",
