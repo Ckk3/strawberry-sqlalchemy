@@ -386,7 +386,7 @@ class StrawberrySQLAlchemyMapper(Generic[BaseModelType]):
             else:
                 raise UnsupportedColumnType(column.key, column.type)
         if type_annotation is SkipTypeSentinel:
-            return type_annotation
+            return SkipTypeSentinel
         if column.nullable:
             type_annotation = Optional[type_annotation]
         assert type_annotation is not None
