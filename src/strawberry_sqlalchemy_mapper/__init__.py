@@ -13,12 +13,15 @@ finally:
 from .field import connection, field, node
 from .loader import StrawberrySQLAlchemyLoader
 from .mapper import StrawberrySQLAlchemyMapper
+from .scalars import BigInt, strawberry_sqlalchemy_scalar_map
 
 __all__ = [
+    "BigInt",
     "StrawberrySQLAlchemyLoader",
     "StrawberrySQLAlchemyMapper",
     "__version__",
     "connection",
     "field",
     "node",
+    "strawberry_sqlalchemy_scalar_map",
 ]
