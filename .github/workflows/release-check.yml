@@ -9,6 +9,9 @@ on:
     - "src/strawberry_sqlalchemy_mapper/**"
     - "pyproject.toml"
 
+permissions:
+  contents: read
+
 jobs:
   get-contributor-info:
     name: Get PR info
@@ -65,10 +68,16 @@ jobs:
       change_type: ${{ steps.release-check.outputs.change_type }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Checkout base repository
+      uses: actions/checkout@v4
       with:
-        ref: "refs/pull/${{ github.event.number }}/merge"
+        persist-credentials: false
+
+    - name: Get RELEASE.md from the pull request
+      run: |
+        rm -f RELEASE.md
+        git fetch --no-tags --depth=1 origin "refs/pull/${{ github.event.number }}/head"
+        git checkout FETCH_HEAD -- RELEASE.md || true
 
     - name: Release file check
       uses: ./.github/release-check-action
@@ -81,7 +90,9 @@ jobs:
     if: github.event.pull_request.draft == false
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
     - name: Send comment
       uses: ./.github/bot-action
       env:
